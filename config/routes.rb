@@ -56,5 +56,5 @@ Rails.application.routes.draw do
 
   root 'questions#index'
 
-  resources :question, only: [:index]
+  resources :questions, only: [:index, :show]
 end

@@ -3,7 +3,7 @@
 <ul class='questions'>
   <% @questions.each do |question| %>
     <li>
-      <%= question.title %>
+      <%= link_to question.title, question_path(question) %>
       <%= question.created_at.strftime("%b %-d, %Y @ %l:%M %p") %>
     </li>
   <% end %>
