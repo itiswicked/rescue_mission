@@ -26,9 +26,38 @@ feature 'questions' do
   end
 
   scenario 'user views details of individual question' do
-# save_and_open_page
     click_link question1.title
     expect(page).to have_content question1.body
+  end
+
+  scenario 'user posts new question' do
+    click_link 'Ask Question'
+    expect(page).to have_content 'New Question'
+
+    title = 'Why are ducks so crazy? I have a duck related story to share'
+    body = 'The thing about ducks is that they will attack you if youre not'\
+           'careful. This one one time a duck came up and started attacking'\
+           'me, and I was all like... WHY?'
+    fill_in 'Title', with: title
+    fill_in 'Body',  with: body
+    click_button 'Submit'
+
+    # Redirect to show page for newly created question
+    expect(page).to have_content body
+  end
+
+  scenario 'user attempts to post invalid question' do
+    click_link 'Ask Question'
+    fill_in 'Title', with: 'Why duck cray cray?'
+    fill_in 'Body',  with: 'WHY?'
+    click_button 'Submit'
+
+    errors = [
+      "Title is too short (minimum is 40 characters)",
+      "Body is too short (minimum is 150 characters)"
+    ]
+
+    errors.each { |error| expect(page).to have_content(error) }
   end
 
 end

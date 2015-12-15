@@ -8,10 +8,10 @@
 
 
 FactoryGirl.define do
-  factory :question do
-    sequence(:title) { |n| "Why shit so crazy? #{n}" }
-    sequence(:body) { |n| "Can anyboy tell me why shit so crazy? #{n}" }
-  end
+  # factory :question do
+  #   sequence(:title) { |n| "Why shit so crazy? #{n}" }
+  #   sequence(:body) { |n| "Can anyboy tell me why shit so crazy? #{n}" }
+  # end
 end
 
 3.times do
