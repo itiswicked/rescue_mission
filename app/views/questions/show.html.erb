@@ -1,3 +1,20 @@
 <h3><%= @question.title %></h3>
 
 <p><%= @question.body %></p>
+
+<h4>Answers</h4>
+<ul>
+  <% @question.answers.each do |answer| %>
+    <li><%= answer.body %></li>
+  <% end %>
+</ul>
+
+<h5>Answer Question</h5>
+<%= form_for @answer do |f| %>
+  <!-- <%= f.fields_for :questions do |q| %> -->
+    <%= f.hidden_field :question_id, value: @question.id %>
+  <!-- <% end %> -->
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

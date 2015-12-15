@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RescueMission</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>RescueMission</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<% if flash.any? %>
-  <ul>
-    <% flash.each do |key, value| %>
-      <li><%= value %></li>
+    <% if flash.any? %>
+      <ul>
+        <% flash[:notice].each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<%= yield %>
+    <%= yield %>
 
-</body>
+  </body>
 </html>
