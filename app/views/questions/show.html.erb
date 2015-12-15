@@ -1,6 +1,9 @@
 <h3><%= @question.title %></h3>
 
 <p><%= @question.body %></p>
+<%= link_to 'Delete Question', question_path(@question), method: :delete %>
+<%= link_to 'Edit Question', edit_question_path(@question) %>
+
 
 <h4>Answers</h4>
 <ul>
@@ -10,10 +13,7 @@
 </ul>
 
 <h5>Answer Question</h5>
-<%= form_for @answer do |f| %>
-  <!-- <%= f.fields_for :questions do |q| %> -->
-    <%= f.hidden_field :question_id, value: @question.id %>
-  <!-- <% end %> -->
+<%= form_for [@question, @answer] do |f| %>
   <%= f.text_area :body %>
 
   <%= f.submit 'Submit' %>

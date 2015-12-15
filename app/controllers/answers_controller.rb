@@ -2,7 +2,8 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-    @question = Question.find(answer_params[:question_id])
+    @question = Question.find(params[:question_id])
+    @answer.question = @question
     unless @answer.save
       flash[:notice] = @answer.errors.full_messages
     end

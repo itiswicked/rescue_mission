@@ -60,4 +60,26 @@ feature 'questions' do
     errors.each { |error| expect(page).to have_content(error) }
   end
 
+  scenario 'user edits question with pre-filled info' do
+    click_link question1.title
+    click_link 'Edit Question'
+
+    # expect form to be pre-filled
+    expect(find_field('Title').value).to have_content question1.title
+    expect(find_field('Body').value).to have_content question1.body
+
+    fill_in 'Title', with: 'Ducks ' * 10
+    fill_in 'Body', with: 'Ducks ' * 30
+    click_button 'Submit'
+    expect(page).to have_content 'Ducks Ducks Ducks Ducks Ducks Ducks Ducks'
+  end
+
+  scenario 'user deletes question' do
+    click_link question1.title
+    click_link 'Delete Question'
+
+    #redirect to '/questions'
+    expect(page).to_not have_content question1.title
+  end
+
 end
